@@ -1,16 +1,6 @@
 -- INSERT statements
 
 -- Order to insert data into tables:
-    -- University || Person
-    -- Department
-    -- Building || Professor || Student
-    -- Class
-    -- Enroll
-
-
--- INSERT statements
-
--- Order to insert data into tables:
     -- Person || Department
     -- Degree || Building || Student
     -- Professor || Stu_degree_list
