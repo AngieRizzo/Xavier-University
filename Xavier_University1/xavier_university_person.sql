@@ -19,15 +19,15 @@
 -- Table structure for table `person`
 --
 
-DROP TABLE IF EXISTS `person`;
+DROP TABLE IF EXISTS `PERSON`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `person` (
-  `PERSON_ID` int NOT NULL,
+CREATE TABLE `PERSON` (
+  `PERSON_ID` int NOT NULL AUTO_INCREMENT,
   `PERSON_FNAME` text,
   `PERSON_LNAME` text,
   `PERSON_EMAIL` text,
-  `PERSON_PHONE` int DEFAULT NULL,
+  `PERSON_PHONE` text,
   `PERSON_ADDR` text,
   PRIMARY KEY (`PERSON_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -37,10 +37,7 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-LOCK TABLES `person` WRITE;
-/*!40000 ALTER TABLE `person` DISABLE KEYS */;
-/*!40000 ALTER TABLE `person` ENABLE KEYS */;
-UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

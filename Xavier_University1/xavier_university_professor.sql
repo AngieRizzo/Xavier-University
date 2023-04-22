@@ -19,14 +19,19 @@
 -- Table structure for table `professor`
 --
 
-DROP TABLE IF EXISTS `professor`;
+DROP TABLE IF EXISTS `PROFESSOR`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `professor` (
-  `PROF_ID` int NOT NULL,
-  `UNI_CODE` int DEFAULT NULL,
-  `PERSON_ID` int DEFAULT NULL,
-  PRIMARY KEY (`PROF_ID`)
+CREATE TABLE `PROFESSOR` (
+  `PROF_ID` int NOT NULL AUTO_INCREMENT,
+  `PERSON_ID` int NOT NULL, -- Can't be NULL (?), the professor must be a person -- Foreign key to PERSON table
+  `DEPT_ID` int DEFAULT NULL, -- Foreign key to DEPARTMENT table
+  `OFFICE_NUM` int DEFAULT NULL,
+  `BUILDING_ID` int DEFAULT NULL, -- Foreign key to BUILDING table
+  PRIMARY KEY (`PROF_ID`),
+  FOREIGN KEY (`PERSON_ID`) REFERENCES PERSON(`PERSON_ID`),
+  FOREIGN KEY (`BUILDING_ID`) REFERENCES BUILDING(`BUILDING_ID`),
+  FOREIGN KEY (`DEPT_ID`) REFERENCES DEPARTMENT(`DEPT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -34,11 +39,6 @@ CREATE TABLE `professor` (
 -- Dumping data for table `professor`
 --
 
-LOCK TABLES `professor` WRITE;
-/*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (301,1001,101),(302,1002,102),(303,1003,103),(304,1004,104),(305,1005,105),(306,1006,106),(307,1007,107),(308,1008,108),(309,1009,109),(310,1010,110),(311,1011,111),(312,1012,112),(313,1013,113),(314,1014,114),(315,1015,115),(316,1016,116),(317,1017,117),(318,2018,118),(319,2019,119),(320,2020,120),(321,3021,121),(322,3022,122),(323,3023,123),(324,3024,124);
-/*!40000 ALTER TABLE `professor` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
