@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS `PERSON`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `PERSON` (
   `PERSON_ID` int NOT NULL AUTO_INCREMENT,
   `PERSON_FNAME` text,
@@ -10,7 +9,6 @@ CREATE TABLE `PERSON` (
   `PERSON_ADDR` text,
   PRIMARY KEY (`PERSON_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `DEGREE`;
 
@@ -33,7 +31,6 @@ DROP TABLE IF EXISTS `DEPARTMENT`;
 CREATE TABLE `DEPARTMENT` (
     `DEPT_ID` int NOT NULL AUTO_INCREMENT,
     `DEPT_NAME` varchar(45) DEFAULT NULL,
-    `DEPT_CHAIR` int DEFAULT NULL, -- Foreign key to PROFESSOR table
     PRIMARY KEY (`DEPT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -64,8 +61,7 @@ CREATE TABLE `BUILDING` (
 
 
 DROP TABLE IF EXISTS `PROFESSOR`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `PROFESSOR` (
   `PROF_ID` int NOT NULL AUTO_INCREMENT,
   `PERSON_ID` int NOT NULL, -- Can't be NULL (?), the professor must be a person -- Foreign key to PERSON table
