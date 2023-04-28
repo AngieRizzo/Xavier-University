@@ -70,7 +70,7 @@ UNLOCK TABLES;
 ------- CLASS -------
 LOCK TABLES `CLASS` WRITE;
 INSERT INTO `CLASS`(DEPT_ID, CLASS_NAME, CLASS_NUMBER, CLASS_YEAR, CLASS_SEMESTER, CLASS_CREDITS, CLASS_ROOM_NUM, BUILDING_ID, CLASS_TIME_SLOTS, PROF_ID)
--- example: value('2', `DATABASES`, `003`, `2023`, `SPRING`, `3`, `4`, `5`, `CLASS_TIME_SLOTS`, '1');
+-- example: value('2', `DATABASES`, `003`, `2023`, `SPRING`, `3`, `4`, '5', `CLASS_TIME_SLOTS`, '1');
 -- Use random numbers for the time slots. It's a fake foreign key, so the actual value doesn't mean anything right now
 
 UNLOCK TABLES;
