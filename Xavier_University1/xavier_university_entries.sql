@@ -31,6 +31,88 @@ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PER
  values('Jude', 'Flight', 'cjflight@gmail.com', '2102491733', '128 lane');
  INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
  values('Denise', 'Dumner', 'denised@gmail.com', '2109224391', '129 lane');
+  INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Ava', 'Smith', 'avasmith@gmail.com', '1234567890', '123 Main St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Emma', 'Johnson', 'emmajohnson@gmail.com', '2345678901', '234 Elm St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Olivia', 'Williams', 'oliviawilliams@gmail.com', '3456789012', '345 Oak St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Sophia', 'Brown', 'sophiabrown@gmail.com', '4567890123', '456 Pine St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Isabella', 'Jones', 'isabellajones@gmail.com', '5678901234', '567 Maple St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Mia', 'Miller', 'miamiller@gmail.com', '6789012345', '678 Birch St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Charlotte', 'Davis', 'charlottedavis@gmail.com', '7890123456', '789 Cedar St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Amelia', 'Garcia', 'ameliagarcia@gmail.com', '8901234567', '890 Walnut St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Harper', 'Rodriguez', 'harperrodriguez@gmail.com', '9012345678', '901 Chestnut St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Evelyn', 'Wilson', 'evelynwilson@gmail.com', '0123456789', '012 Cherry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Abigail', 'Anderson','abigailanderson@gmail.com','1234567890','123 Apple St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Emily','Taylor','emilytaylor@gmail.com','2345678901','234 Peach St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Elizabeth','Moore','elizabethmoore@gmail.com','3456789012','345 Plum St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Sofia','Jackson','sofiajackson@gmail.com','4567890123','456 Pear St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Avery','Martin','averymartin@gmail.com','5678901234','567 Orange St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Ella','Lee','ellalee@gmail.com','6789012345','678 Grapefruit St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Scarlett','Perez','scarlettperez@gmail.com','7890123456','789 Lemon St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Grace','Thompson','gracethompson@gmail.com','8901234567','890 Lime St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Victoria','White','victoriawhite@gmail.com','9012345678','901 Kiwi St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Riley','Harris','rileyharris@gmail.com' ,'0123456789' ,'012 Mango St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Aria' ,'Clark' ,'ariaclark@gmail.com' ,'1234567890' ,'123 Papaya St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Lily' ,'Lewis' ,'lilylewis@gmail.com' ,'2345678901' ,'234 Pineapple St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Chloe' ,'Nelson' ,'chloenelson@gmail.com' ,'3456789012' ,'345 Banana St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Layla' ,'Carter' ,'laylacarter@gmail.com' ,'4567890123' ,'456 Strawberry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Natalie' ,'Mitchell' ,'nataliemitchell@gmail.com' ,'5678901234' ,'567 Raspberry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Savannah' ,'Perez' ,'savannahperez@gmail.com' ,'6789012345' ,'678 Blueberry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Leah' ,'Roberts' ,'leahroberts@gmail.com' ,'7890123456' ,'789 Blackberry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Audrey' ,'Turner' ,'audreyturner@gmail.com' ,'8901234567' ,'890 Cranberry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Allison' ,'Phillips' ,'allisonphillips@gmail.com' ,'9012345678' ,'901 Cherry St');
+ INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+ values('Anna' ,'Campbell' ,'annacampbell@gmail.com' ,'5252562244' ,'567 Raspberry St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR) #38
+ values('Isabella' ,'Inman' ,'isabella.inman@gmail.com' ,'5255559512' ,'123 lane');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+value('Connie', 'Vigue', 'ConnieCVigue@gmail.com', '8053650871', '413 Turtle Crest Dr' );
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+value('Tahi-Popa', 'Wikiriwhi', 'TahiPopaWikiriwhi@gmail.com', '9411326663', '967 Raspberry St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+value('Elizabeth', 'Cryer', 'Ecryer@gmail.com', '9281497351', '112 lane' );
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('George', 'Jones', 'georgejones@gmail.com', '5551235734', '123 Main St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('Jane', 'Smith', 'jane.smith@gmail.com', '3455673578', '456 Elm St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('Bob', 'Johnson', 'bob.johnson@gmail.com', '1577458765', '789 Oak St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('Alice', 'Williams', 'alice.williams@gmail.com', '3556554321', '321 Pine St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('Charlie', 'Brown', 'charlie.brown@gmail.com', '5365552468', '246 Maple St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('Dave', 'Davis', 'dave.davis@gmail.com', '4551357', '357 Cedar St');
+INSERT INTO `PERSON`(PERSON_FNAME, PERSON_LNAME, PERSON_EMAIL, PERSON_PHONE, PERSON_ADDR)
+VALUES ('Emily', 'Evans', 'emily.evans@gmail.com', '4255557531', '531 Birch St');
 -- ( {PERSON_FNAME},     {PERSON_LNAME},    {PERSON_EMAIL},     {PERSON_PHONE},     {PERSON_ADDR} ),
 
 UNLOCK TABLES;
@@ -39,13 +121,34 @@ UNLOCK TABLES;
 ------- DEPARTMENT -------
 LOCK TABLES `DEPARTMENT` WRITE;
 INSERT INTO `DEPARTMENT`(DEPT_NAME)
- value('Fine Arts');
- INSERT INTO `DEPARTMENT`(DEPT_NAME)
- value('Mathematics');
- INSERT INTO `DEPARTMENT`(DEPT_NAME)
- value('Liberal Arts');
- INSERT INTO `DEPARTMENT`(DEPT_NAME)
- value('Foreign Language');
+value('Architecture');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Biology');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Business');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Computer Science');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Engineering');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Fine Arts');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Foreign Language');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Histoy');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Humanities & Sciences');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Information Systems');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Law');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Liberal Arts');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Mathematics');
+INSERT INTO `DEPARTMENT`(DEPT_NAME)
+value('Medicine');
+
 
 UNLOCK TABLES;
 
