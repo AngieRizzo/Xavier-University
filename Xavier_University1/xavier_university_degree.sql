@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS `DEGREE`;
-
 CREATE TABLE `DEGREE` (
     `DEGREE_ID` int NOT NULL AUTO_INCREMENT,
     `DEGREE_NAME` varchar(45) DEFAULT NULL,
@@ -25,11 +23,12 @@ CREATE TABLE `DEGREE` (
 -- Bachelor: 120
 -- Master: 30
 -- Doctorate: 60
-CREATE PROCEDURE `update_degree_credits`()
+DELIMITER $$
+CREATE PROCEDURE `update_degree_credits`(IN NEW_ID int)
 BEGIN
     -- make variables for degree_type, year_level_start, credits_earned, and credits_required
     -- get the student's degree type
-    SELECT DEGREE_TYPE INTO @degree_type FROM DEGREE WHERE DEGREE_ID = NEW.DEGREE_ID;
+    SELECT DEGREE_TYPE INTO @degree_type FROM DEGREE WHERE DEGREE_ID = NEW_ID;
     IF @degree_type = 'Certificate' THEN
         SET @degree_credits = 30;
     ELSEIF @degree_type = 'Associate' THEN
@@ -41,23 +40,48 @@ BEGIN
     ELSEIF @degree_type = 'Doctorate' THEN
         SET @degree_credits = 60;
     END IF;
-    UPDATE DEGREE SET DEGREE_CREDITS = @degree_credits WHERE DEGREE_ID = NEW.DEGREE_ID;
+    UPDATE DEGREE SET DEGREE_CREDITS = @degree_credits WHERE DEGREE_ID = NEW_ID;
 END$$
+DELIMITER ;
 -- create trigger to run when the DEGREE table is updated and it's the degree's id that is updated in the DEGREE_ID field
 -- the trigger will run the update_degree_credits procedure
-DROP TRIGGER IF EXISTS `update_degree_credits_trigger`;
-CREATE TRIGGER `update_degree_credits_trigger` AFTER UPDATE ON `DEGREE`
-FOR EACH ROW
-BEGIN
-    IF NEW.DEGREE_ID != OLD.DEGREE_ID THEN
-        CALL update_degree_credits();
-    END IF;
-END$$
+-- DELIMITER $$
+-- CREATE TRIGGER `update_degree_credits_trigger`
+-- BEFORE UPDATE ON `DEGREE`
+-- FOR EACH ROW
+-- BEGIN
+--     IF NEW.DEGREE_ID != OLD.DEGREE_ID THEN
+--         CALL update_degree_credits(NEW.DEGREE_ID);
+--     END IF;
+-- END$$
+-- DELIMITER ;
 -- create trigger to run when the DEGREE table is inserted into
 -- the trigger will run the update_degree_credits procedure
-DROP TRIGGER IF EXISTS `update_degree_credits_trigger_insert`;
-CREATE TRIGGER `update_degree_credits_trigger_insert` AFTER INSERT ON `DEGREE`
-FOR EACH ROW
+-- DELIMITER $$
+-- CREATE TRIGGER `update_degree_credits_trigger_insert`
+-- BEFORE INSERT ON `DEGREE`
+-- FOR EACH ROW
+-- BEGIN
+--     CALL update_degree_credits(NEW.DEGREE_ID);
+-- END$$
+-- DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `update_degree_all_credits`()
 BEGIN
-    CALL update_degree_credits();
+    -- call update_degree_credits for every row in DEGREE
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE id INT;
+    DECLARE cur CURSOR FOR SELECT DEGREE_ID FROM DEGREE;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    OPEN cur;
+    read_loop: LOOP
+        FETCH cur INTO id;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        CALL update_degree_credits(id);
+    END LOOP;
+    CLOSE cur;
 END$$
+DELIMITER ;
