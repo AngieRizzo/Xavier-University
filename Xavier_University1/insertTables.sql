@@ -448,7 +448,10 @@ UNLOCK TABLES;
 LOCK TABLES `DEPARTMENT` WRITE;
 INSERT INTO `DEPARTMENT`(DEPT_NAME)
 VALUES('Architecture'),
-    ('Biology'),
+	('Astronomy and Astrophysics'),
+    ('Neuroscience, Developmental and Regenerative Biology'),
+    ('Integrative Biology'),
+    ('Earth and Planetary Sciences'),
     ('Business'),
     ('Computer Science'),
     ('Engineering'),
@@ -460,7 +463,15 @@ VALUES('Architecture'),
     ('Law'),
     ('Liberal Arts'),
     ('Mathematics'),
-    ('Medicine');
+    ('Medicine'),
+    ('Molecular Microbiology and Immunology'),
+    ('ENERGY & UTILITY MANAGEMENT'),
+    ('Contract & Support Services'),
+    ('Facilities Leadership Team'),
+    ('Operations & Maintenance'),
+    ('Business & Customer Services'),
+    ('Political Science and Geography'),
+    ('Philosophy and Classics');
 
 
 UNLOCK TABLES;
@@ -484,7 +495,28 @@ INSERT INTO `BUILDING`(DEPT_ID, BUILDING_NAME, BUILDING_ADDRESS)
 VALUES('1', 'West', '1 Xavier ln'),
     ('2', 'North', '2 Xavier ln'),
     ('3', 'East', '3 Xavier ln'),
-    ('4', 'South', '4 Xavier ln');
+    ('4', 'South', '4 Xavier ln'),
+    ('5', 'South', '5 Xavier ln'),
+    ('6', 'South', '6 Xavier ln'),
+    ('7', 'South', '7 Xavier ln'),
+    ('8', 'South', '8 Xavier ln'),
+    ('9', 'South', '9 Xavier ln'),
+    ('10', 'South', '10 Xavier ln'),
+    ('11', 'South', '11 Xavier ln'),
+    ('12', 'South', '12 Xavier ln'),
+    ('13', 'South', '13 Xavier ln'),
+    ('14', 'South', '14 Xavier ln'),
+    ('15', 'South', '15 Xavier ln'),
+    ('16', 'South', '16 Xavier ln'),
+    ('17', 'South', '17 Xavier ln'),
+    ('18', 'South', '18 Xavier ln'),
+    ('19', 'South', '19 Xavier ln'),
+    ('20', 'South', '20 Xavier ln'),
+    ('21', 'South', '21 Xavier ln'),
+    ('22', 'South', '22 Xavier ln'),
+    ('23', 'South', '23 Xavier ln'),
+    ('24', 'South', '24 Xavier ln');
+    
 
 UNLOCK TABLES;
 
