@@ -74,7 +74,10 @@ UNLOCK TABLES;
 LOCK TABLES `DEPARTMENT` WRITE;
 INSERT INTO `DEPARTMENT`(DEPT_NAME)
 VALUES('Architecture'),
-    ('Biology'),
+	('Astronomy and Astrophysics'),
+    ('Neuroscience, Developmental and Regenerative Biology'),
+    ('Integrative Biology'),
+    ('Earth and Planetary Sciences'),
     ('Business'),
     ('Computer Science'),
     ('Engineering'),
@@ -86,7 +89,15 @@ VALUES('Architecture'),
     ('Law'),
     ('Liberal Arts'),
     ('Mathematics'),
-    ('Medicine');
+    ('Medicine'),
+    ('Molecular Microbiology and Immunology'),
+    ('ENERGY & UTILITY MANAGEMENT'),
+    ('Contract & Support Services'),
+    ('Facilities Leadership Team'),
+    ('Operations & Maintenance'),
+    ('Business & Customer Services'),
+    ('Political Science and Geography'),
+    ('Philosophy and Classics');
 
 
 UNLOCK TABLES;
@@ -110,7 +121,27 @@ INSERT INTO `BUILDING`(DEPT_ID, BUILDING_NAME, BUILDING_ADDRESS)
 VALUES('1', 'West', '1 Xavier ln'),
     ('2', 'North', '2 Xavier ln'),
     ('3', 'East', '3 Xavier ln'),
-    ('4', 'South', '4 Xavier ln');
+    ('4', 'South', '4 Xavier ln'),
+    ('5', 'A1', '5 Xavier ln'),
+    ('6', 'A2', '6 Xavier ln'),
+    ('7', 'A3', '7 Xavier ln'),
+    ('8', 'A4', '8 Xavier ln'),
+    ('9', 'A5', '9 Xavier ln'),
+    ('10', 'A6', '10 Xavier ln'),
+    ('11', 'A7', '11 Xavier ln'),
+    ('12', 'A8', '12 Xavier ln'),
+    ('13', 'A9', '13 Xavier ln'),
+    ('14', 'B1', '14 Xavier ln'),
+    ('15', 'B2', '15 Xavier ln'),
+    ('16', 'B3', '16 Xavier ln'),
+    ('17', 'B4', '17 Xavier ln'),
+    ('18', 'B5', '18 Xavier ln'),
+    ('19', 'B6', '19 Xavier ln'),
+    ('20', 'B7', '20 Xavier ln'),
+    ('21', 'B8', '21 Xavier ln'),
+    ('22', 'B9', '22 Xavier ln'),
+    ('23', 'C1', '23 Xavier ln'),
+    ('24', 'C2', '24 Xavier ln');
 
 UNLOCK TABLES;
 
@@ -128,7 +159,30 @@ UNLOCK TABLES;
 -- ----- PROFESSOR -------
 LOCK TABLES `PROFESSOR` WRITE;
 INSERT INTO `PROFESSOR`(PERSON_ID, DEPT_ID, OFFICE_NUM, BUILDING_ID)
-VALUES('3', '1', '1', '1');
+VALUES('3', '1', '1', '1'),
+    ('4', '2', '2', '2'),
+    ('5', '3', '3', '3'),
+    ('6', '4', '9', '4'),
+    ('12', '5', '10', '5'),
+    ('13', '6', '11', '6'),
+    ('7', '7', '12', '7'),
+    ('8', '8', '13', '18'),
+    ('9', '9', '14', '19'),
+    ('10', '10', '15', '20'),
+    ('11', '11', '16', '21'),
+    ('2', '12', '4', '22'),
+    ('14', '13', '5', '23'),
+    ('15', '14', '6', '24'),
+    ('16', '15', '7', '8'),
+    ('17', '16', '8', '9'),
+    ('18', '17', '17', '10'),
+    ('19', '18', '18', '11'),
+    ('21', '19', '19', '12'),
+    ('22', '20', '20', '13'),
+    ('23', '21', '24', '14'),
+    ('24', '22', '23', '15'),
+    ('20', '23', '22', '16'),
+    ('1', '24', '21', '17');
 
 UNLOCK TABLES;
 
