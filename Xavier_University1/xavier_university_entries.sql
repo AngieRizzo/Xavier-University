@@ -75,7 +75,7 @@ LOCK TABLES `DEPARTMENT` WRITE;
 INSERT INTO `DEPARTMENT`(DEPT_NAME)
 VALUES('Architecture'),
 	('Astronomy and Astrophysics'),
-    ('Neuroscience, Developmental and Regenerative Biology'),
+    ('Neuroscience'),
     ('Integrative Biology'),
     ('Earth and Planetary Sciences'),
     ('Business'),
@@ -83,7 +83,7 @@ VALUES('Architecture'),
     ('Engineering'),
     ('Fine Arts'),
     ('Foreign Language'),
-    ('Histoy'),
+    ('History'),
     ('Humanities & Sciences'),
     ('Information Systems'),
     ('Law'),
@@ -167,6 +167,7 @@ VALUES('1', 'West', '1 Xavier ln'),
 UNLOCK TABLES;
 
 -- ----- STUDENT -------
+-- just did EVEN PERSON_ID for student (odd for professor)
 LOCK TABLES `STUDENT` WRITE;
 INSERT INTO `STUDENT`(PERSON_ID)
 VALUES('1'), ('2'), ('3'), ('4'), ('5'),
@@ -179,6 +180,7 @@ VALUES('1'), ('2'), ('3'), ('4'), ('5'),
 UNLOCK TABLES;
 
 -- ----- PROFESSOR -------
+-- just did odd PERSON_ID for prefessor (even for student)
 LOCK TABLES `PROFESSOR` WRITE;
 INSERT INTO `PROFESSOR`(PERSON_ID, DEPT_ID, OFFICE_NUM, BUILDING_ID)
 VALUES('26', '1', '1', '1'),
