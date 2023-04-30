@@ -25,8 +25,8 @@ BEGIN
     DECLARE `gpa` DECIMAL(4,2);
     DECLARE `grade_sum` DECIMAL(4,2);
     DECLARE `grade_count` INT;
-    SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id`);
-    SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id`);
+    SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
+    SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
     IF `grade_count` = 0 THEN
         SET `gpa` = 0;
     ELSE
@@ -37,20 +37,36 @@ END$$
 -- run with `CALL update_gpa(n);` where n is the student id
 -- create trigger to run when the ENROLLMENT table is updated and it's the student's id that is updated in the STU_ID field
 -- the trigger will run the update_gpa procedure
+
 DELIMITER $$
-CREATE TRIGGER `update_gpa_trigger` AFTER UPDATE ON `ENROLLMENT`
-FOR EACH ROW
+DROP PROCEDURE IF EXISTS `update_all_gpa`$$
+CREATE PROCEDURE `update_all_gpa` ()
 BEGIN
-    IF NEW.`STU_ID` = OLD.`STU_ID` THEN
-        CALL update_gpa(NEW.`STU_ID`);
-    END IF;
-END$$
--- create trigger to run when an entry is inserted into the ENROLLMENT table
--- the trigger will run the update_gpa procedure
-DELIMITER $$
-CREATE TRIGGER `update_gpa_trigger_insert` AFTER INSERT ON `ENROLLMENT`
-FOR EACH ROW
-BEGIN
-    CALL update_gpa(NEW.`STU_ID`);
+    -- loop through each student id, and if the student has no grades, set the GPA to 0
+    -- else, call the update_gpa procedure
+    DECLARE `stu_id` INT;
+    DECLARE `grade_count` INT;
+    DECLARE `grade_sum` DECIMAL(4,2);
+    DECLARE `gpa` DECIMAL(4,2);
+    DECLARE `done` INT DEFAULT FALSE;
+    DECLARE `cur` CURSOR FOR SELECT `STU_ID` FROM `STUDENT`;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET `done` = TRUE;
+    OPEN `cur`;
+    `loop`: LOOP
+        FETCH `cur` INTO `stu_id`;
+        IF `done` THEN
+            LEAVE `loop`;
+        END IF;
+        SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
+        IF `grade_count` = 0 THEN
+            SET `gpa` = 0;
+        ELSE
+            SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
+            SET `gpa` = `grade_sum` / `grade_count`;
+        END IF;
+        UPDATE `STUDENT` SET `STU_GPA` = `gpa` WHERE `STU_ID` = `stu_id`;
+    END LOOP `loop`;
+    CLOSE `cur`;
 END$$
 DELIMITER ;
+

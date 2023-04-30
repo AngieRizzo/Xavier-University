@@ -91,7 +91,7 @@ VALUES('Architecture'),
     ('Mathematics'),
     ('Medicine'),
     ('Molecular Microbiology and Immunology'),
-    ('ENERGY & UTILITY MANAGEMENT'),
+    ('Energy & Utility Management'),
     ('Contract & Support Services'),
     ('Facilities Leadership Team'),
     ('Operations & Maintenance'),
@@ -106,11 +106,32 @@ UNLOCK TABLES;
 -- ----- DEGREE -------
 LOCK TABLES `DEGREE` WRITE;
 INSERT INTO `DEGREE`(DEGREE_NAME, DEGREE_TYPE, DEPT_ID, DEGREE_GPA, CATALOG_YEAR, YEAR_STARTED, YEAR_COMPLETED /* NULL if not completed */)
-VALUES('Computer Science', 'bachelors', '2', '4.0', '2023', '2020', '0' /* NULL if not completed */),
-    ('Mathematics', 'bachelors', '2', '4.0', '2023', '2019', '0' /* NULL if not completed */),
-    ('Spanish', 'bachelors', '3', '3.5', '2023', '2021', '0' /* NULL if not completed */),
-    ('Computer Science', 'bachelors', '2', '3.2', '2023', '2019', '2023' /* NULL if not completed */),
-    ('Art', 'bachelors', '1', '2.9', '2020', '2016', '2020' /* NULL if not completed */);
+VALUES('Computer Science', 'Bachelor', '7', '4.0', '2020', '2020', NULL),
+    ('Mathematics', 'Bachelor', '16', '4.0', '2019', '2019', NULL),
+    ('Spanish', 'Bachelor', '3', '3.5', '2021', '2021', NULL),
+    ('Computer Science', 'Bachelor', '2', '3.2', '2019', '2019', '2023'),
+    ('Art', 'Bachelor', '15', '2.9', '2020', '2016', '2020'),
+    ('Computer Engineering', 'Bachelor', '8', '3.8', '2021', '2019', NULL),
+    ('Computer Science', 'Master', '7', '4.0', '2022', '2022', NULL),
+    ('Business Administration', 'Master', '6', '3.6', '2023', '2023', NULL),
+    ('Philosophy', 'Bachelor', '26', '3.9', '2022', '2022', NULL),
+    ('Political Science', 'Bachelor', '24', '3.2', '2020', '2020', NULL),
+    ('History', 'Master', '11', '3.7', '2021', '2021', NULL),
+    ('Information Systems', 'Bachelor', '13', '3.5', '2020', '2020', NULL),
+    ('Neuroscience', 'Doctorate', '4', '4.0', '2022', '2018', '2022'),
+    ('Mechanical Engineering', 'Bachelor', '8', '3.3', '2019', '2019', NULL),
+    ('Biology', 'Bachelor', '4', '3.8', '2021', '2021', NULL),
+    ('Environmental Science', 'Master', '5', '3.6', '2022', '2022', NULL),
+    ('Physics', 'Doctorate', '2', '4.0', '2023', '2019', '2023'),
+    ('Computer Science', 'Associate', '7', '3.5', '2020', '2020', NULL),
+    ('Fine Arts', 'Bachelor', '9', '3.2', '2019', '2019', NULL),
+    ('Energy Management', 'Certificate', '19', '3.7', '2021', '2021', NULL),
+    ('Facilities Management', 'Associate', '21', '3.5', '2020', '2020', NULL),
+    ('Business', 'Bachelor', '6', '3.9', '2022', '2022', NULL),
+    ('Architecture', 'Bachelor', '0', '0', NULL, NULL, NULL),
+    ('Astronomy and Astrophysics', 'Bachelor', '0', '0', NULL, NULL, NULL),
+    ('Neuroscience, Developmental and Regenerative Biology', 'Bachelor', '0', '0', NULL, NULL, NULL);
+
 
 UNLOCK TABLES;
 
@@ -147,42 +168,43 @@ UNLOCK TABLES;
 
 -- ----- STUDENT -------
 LOCK TABLES `STUDENT` WRITE;
-INSERT INTO `STUDENT`(PERSON_ID, DEPT_ID)
-VALUES('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '1');
+INSERT INTO `STUDENT`(PERSON_ID)
+VALUES('1'), ('2'), ('3'), ('4'), ('5'),
+    ('6'), ('7'), ('8'), ('9'), ('10'),
+    ('11'), ('12'), ('13'), ('14'), ('15'),
+    ('16'), ('17'), ('18'), ('19'), ('20'),
+    ('21'), ('22'), ('23'), ('24'), ('25');
+
 
 UNLOCK TABLES;
 
 -- ----- PROFESSOR -------
 LOCK TABLES `PROFESSOR` WRITE;
 INSERT INTO `PROFESSOR`(PERSON_ID, DEPT_ID, OFFICE_NUM, BUILDING_ID)
-VALUES('3', '1', '1', '1'),
-    ('4', '2', '2', '2'),
-    ('5', '3', '3', '3'),
-    ('6', '4', '9', '4'),
-    ('12', '5', '10', '5'),
-    ('13', '6', '11', '6'),
-    ('7', '7', '12', '7'),
-    ('8', '8', '13', '18'),
-    ('9', '9', '14', '19'),
-    ('10', '10', '15', '20'),
-    ('11', '11', '16', '21'),
-    ('2', '12', '4', '22'),
-    ('14', '13', '5', '23'),
-    ('15', '14', '6', '24'),
-    ('16', '15', '7', '8'),
-    ('17', '16', '8', '9'),
-    ('18', '17', '17', '10'),
-    ('19', '18', '18', '11'),
-    ('21', '19', '19', '12'),
-    ('22', '20', '20', '13'),
-    ('23', '21', '24', '14'),
-    ('24', '22', '23', '15'),
-    ('20', '23', '22', '16'),
-    ('1', '24', '21', '17');
+VALUES('26', '1', '1', '1'),
+    ('27', '2', '2', '2'),
+    ('28', '3', '3', '3'),
+    ('29', '4', '9', '4'),
+    ('30', '5', '10', '5'),
+    ('31', '6', '11', '6'),
+    ('32', '7', '12', '7'),
+    ('33', '8', '13', '18'),
+    ('34', '9', '14', '19'),
+    ('35', '10', '15', '20'),
+    ('36', '11', '16', '21'),
+    ('37', '12', '4', '22'),
+    ('38', '13', '5', '23'),
+    ('39', '14', '6', '24'),
+    ('40', '15', '7', '8'),
+    ('41', '16', '8', '9'),
+    ('42', '17', '17', '10'),
+    ('43', '18', '18', '11'),
+    ('44', '19', '19', '12'),
+    ('45', '20', '20', '13'),
+    ('46', '21', '24', '14'),
+    ('47', '22', '23', '15'),
+    ('48', '23', '22', '16'),
+    ('49', '24', '21', '17');
 
 UNLOCK TABLES;
 
@@ -193,7 +215,27 @@ VALUES('1', '1', '108'),
     ('2', '2', '110'),
     ('3', '3', '80'),
     ('4', '4', '120'),
-    ('5', '5', '120');
+    ('5', '5', '120'),
+    ('6', '6', '128'),
+    ('7', '7', '32'),
+    ('8', '8', '96'),
+    ('9', '9', '112'),
+    ('10', '10', '104'),
+    ('11', '11', '72'),
+    ('12', '12', '128'),
+    ('13', '13', '80'),
+    ('14', '14', '120'),
+    ('15', '15', '108'),
+    ('16', '16', '116'),
+    ('17', '17', '136'),
+    ('18', '18', '24'),
+    ('19', '19', '36'),
+    ('20', '20', '48'),
+    ('21', '21', '80'),
+    ('22', '22', '80'),
+    ('23', '23', '96'),
+    ('24', '24', '112'),
+    ('25', '25', '72');
 
 UNLOCK TABLES;
 
@@ -202,7 +244,31 @@ UNLOCK TABLES;
 LOCK TABLES `CLASS` WRITE;
 INSERT INTO `CLASS`(DEPT_ID, CLASS_NAME, CLASS_NUMBER, CLASS_YEAR, CLASS_SEMESTER, CLASS_CREDITS, CLASS_ROOM_NUM, BUILDING_ID, CLASS_TIME_SLOTS, PROF_ID)
 VALUES('2', 'Databases', '0001', '2023', '1', '3', '1', '2', '10', '1'),
-    ('4', 'Spanish', '0002', '2023', '1', '3', '2', '4', '10', '1'); -- TODO: WE ONLY HAVE 1 PROFESSOR RIGHT NOW
+    ('4', 'Spanish', '0002', '2023', '1', '3', '2', '4', '10', '1'),
+    ('2', 'Astronomy 101', '101', '2023', '1', '3', '101', '1', '12', '14'),
+    ('5', 'Geology Lab', '201L', '2023', '3', '1', '102', '5', '2', '6'),
+    ('12', 'Introduction to World History', '101', '2023', '2', '3', '201', '11', '10', '2'),
+    ('21', 'Operations Management', '301', '2023', '1', '4', '101', '8', '9', '19'),
+    ('3', 'Developmental Biology', '301', '2023', '2', '3', '201', '2', '3', '7'),
+    ('8', 'Oil Painting', '201', '2023', '3', '3', '101', '9', '14', '23'),
+    ('11', 'Ancient Greek Literature', '301', '2023', '1', '3', '107', '6', '12', '11'),
+    ('18', 'Organic Chemistry Lab', '301L', '2023', '2', '1', '107', '16', '20', '17'),
+    ('1', 'Architecture Studio I', '101', '2023', '3', '3', '105', '1', '12', '4'),
+    ('22', 'Human Resource Management', '401', '2023', '1', '3', '201', '8', '11', '18'),
+    ('7', 'Web Programming', '301', '2023', '2', '3', '205', '4', '10', '20'),
+    ('14', 'Jazz', '101', '2023', '3', '3', '204', '12', '2', '9'),
+    ('9', 'Ceramics', '201', '2023', '1', '3', '301', '5', '9', '24'),
+    ('25', 'Philosophy of Science', '401', '2023', '2', '3', '101', '19', '17', '15'),
+    ('15', 'Legal Writing', '201', '2023', '3', '3', '101', '13', '18', '8'),
+    ('13', 'Principles of Marketing', '301', '2023', '1', '3', '203', '11', '16', '13'),
+    ('10', 'Sculpture', '201', '2023', '2', '3', '202', '6', '14', '22'),
+    ('6', 'Database Systems', '301', '2023', '3', '3', '101', '3', '11', '21'),
+    ('17', 'Physical Chemistry', '401', '2023', '1', '4', '201', '15', '3', '16'),
+    ('19', 'Organic Chemistry', '401', '2023', '2', '3', '201', '16', '9', '17'),
+    ('20', 'Inorganic Chemistry', '401', '2023', '1', '3', '201', '16', '10', '17'),
+    ('16', 'Criminal Law', '201', '2023', '2', '3', '103', '14', '9', '10'),
+    ('23', 'Business Law', '401', '2023', '3', '3', '207', '18', '3', '12'),
+    ('24', 'Ethics', '401', '2023', '1', '3', '209', '19', '1', '15');
 -- Use random numbers for the time slots. It's a fake foreign key, so the actual value doesn't mean anything right now
 
 UNLOCK TABLES;
@@ -211,9 +277,53 @@ UNLOCK TABLES;
 -- ----- ENROLLMENT -------
 LOCK TABLES `ENROLLMENT` WRITE;
 INSERT INTO `ENROLLMENT` (STU_ID, CLASS_ID, ENROLL_GRADE)
-VALUES('1', '1', '4.0');
-
+VALUES('1', '1', '4.0'), ('1', '3', '3.2'),
+    ('2', '6', '2.9'), ('3', '17', '3.6'),
+    ('4', '8', '3.8'), ('5', '2', '2.6'),
+    ('6', '19', '4.0'), ('7', '25', '3.4'),
+    ('8', '20', '3.5'), ('9', '9', '3.1'),
+    ('10', '21', '2.5'), ('11', '11', '3.9'),
+    ('12', '10', '3.3'), ('13', '26', '3.7'),
+    ('14', '7', '2.8'), ('15', '22', '3.0'),
+    ('16', '14', '3.5'), ('17', '12', '3.2'),
+    ('18', '13', '3.9'), ('19', '24', '2.7'),
+    ('20', '4', '3.3'), ('21', '1', '3.8'),
+    ('22', '16', '3.4'), ('23', '15', '2.9'),
+    ('24', '5', '3.1'), ('25', '26', '3.7'),
+    ('1', '2', '2.9'), ('2', '13', '3.7'),
+    ('3', '7', '3.3'), ('4', '11', '3.8'),
+    ('5', '15', '3.5'), ('6', '10', '2.8'),
+    ('7', '17', '3.9'), ('8', '6', '2.5'),
+    ('9', '19', '3.2'), ('10', '22', '3.0'),
+    ('11', '16', '2.6'), ('12', '8', '3.4'),
+    ('13', '18', '3.1'), ('14', '4', '2.7'),
+    ('15', '20', '3.5'), ('16', '21', '2.9'),
+    ('17', '24', '3.8'), ('18', '1', '3.6'),
+    ('19', '9', '3.0'), ('20', '14', '3.3'),
+    ('21', '25', '3.9'), ('22', '12', '3.5'),
+    ('23', '3', '2.8'), ('24', '23', '3.2'),
+    ('25', '5', '2.5'), ('25', '4', '3.5');
 UNLOCK TABLES;
+
+
+-- adding here to avoid error while setting up tables
+DELIMITER $$
+CREATE TRIGGER `update_gpa_trigger` AFTER UPDATE ON `ENROLLMENT`
+FOR EACH ROW
+BEGIN
+    IF NEW.`STU_ID` = OLD.`STU_ID` THEN
+        CALL update_gpa(NEW.`STU_ID`);
+    END IF;
+END$$
+-- create trigger to run when an entry is inserted into the ENROLLMENT table
+-- the trigger will run the update_gpa procedure
+DELIMITER $$
+CREATE TRIGGER `update_gpa_trigger_insert` AFTER INSERT ON `ENROLLMENT`
+FOR EACH ROW
+BEGIN
+    CALL update_gpa(NEW.`STU_ID`);
+END$$
+DELIMITER ;
 
 
 -- ----- UPDATE STUDENT STANDING -------
@@ -221,3 +331,6 @@ UNLOCK TABLES;
 
 -- ----- CALL `update_degree_all_credits`() -------
 CALL update_degree_all_credits();
+
+-- ----- CALL `update_all_gpa`() -------
+CALL update_all_gpa();

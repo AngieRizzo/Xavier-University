@@ -1,6 +1,6 @@
 CREATE TABLE `DEGREE` (
     `DEGREE_ID` int NOT NULL AUTO_INCREMENT,
-    `DEGREE_NAME` varchar(45) DEFAULT NULL,
+    `DEGREE_NAME` varchar(60) DEFAULT NULL,
     `DEGREE_TYPE` varchar(45) DEFAULT NULL, -- Certificate, Associate, Bachelor, Master, Doctorate
     `DEPT_ID` int NOT NULL, -- Foreign key to DEPARTMENT table
     `DEGREE_GPA` decimal(4,2) DEFAULT NULL, -- This could be different for a student with multiple degrees from the student's overall GPA. This is what shows up on their transcript for this specific degree
