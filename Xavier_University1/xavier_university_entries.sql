@@ -75,7 +75,7 @@ LOCK TABLES `DEPARTMENT` WRITE;
 INSERT INTO `DEPARTMENT`(DEPT_NAME)
 VALUES('Architecture'),
 	('Astronomy and Astrophysics'),
-    ('Neuroscience, Developmental and Regenerative Biology'),
+    ('Neuroscience'),
     ('Integrative Biology'),
     ('Earth and Planetary Sciences'),
     ('Business'),
@@ -83,7 +83,7 @@ VALUES('Architecture'),
     ('Engineering'),
     ('Fine Arts'),
     ('Foreign Language'),
-    ('Histoy'),
+    ('History'),
     ('Humanities & Sciences'),
     ('Information Systems'),
     ('Law'),
@@ -106,11 +106,30 @@ UNLOCK TABLES;
 -- ----- DEGREE -------
 LOCK TABLES `DEGREE` WRITE;
 INSERT INTO `DEGREE`(DEGREE_NAME, DEGREE_TYPE, DEPT_ID, DEGREE_GPA, CATALOG_YEAR, YEAR_STARTED, YEAR_COMPLETED /* NULL if not completed */)
-VALUES('Computer Science', 'bachelors', '2', '4.0', '2023', '2020', '0' /* NULL if not completed */),
-    ('Mathematics', 'bachelors', '2', '4.0', '2023', '2019', '0' /* NULL if not completed */),
-    ('Spanish', 'bachelors', '3', '3.5', '2023', '2021', '0' /* NULL if not completed */),
-    ('Computer Science', 'bachelors', '2', '3.2', '2023', '2019', '2023' /* NULL if not completed */),
-    ('Art', 'bachelors', '1', '2.9', '2020', '2016', '2020' /* NULL if not completed */);
+VALUES('Building Design/Architecture', 'bachelors', '1', '4.0', '2023', '2020', '0' /* NULL if not completed */),
+    ('Astronomy', 'bachelors', '2', '4.0', '2023', '2019', '0' /* NULL if not completed */),
+    ('Neuroscience', 'bachelors', '3', '3.5', '2023', '2021', '0' /* NULL if not completed */),
+    ('Biology', 'bachelors', '4', '3.2', '2023', '2019', '2023' /* NULL if not completed */),
+    ('Geology', 'bachelors', '5', '2.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Business', 'associates', '6', '2.7', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Computer Science', 'bachelors', '7', '3.4', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Mechanical Engineering', 'bachelors', '8', '4.0', '2023', '2021', '0' /* NULL if not completed */),
+    ('Painting', 'bachelors', '9', '2.3', '2023', '2021', '0' /* NULL if not completed */),
+    ('Spanish', 'bachelors', '10', '1.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Roman History', 'Doctorate', '11', '1.4', '2023', '2021', '0' /* NULL if not completed */),
+    ('Writing', 'bachelors', '12', '3.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Information Technology', 'associates', '13', '1.7', '2023', '2019', '0' /* NULL if not completed */),
+    ('Disciplinary', 'Doctorate', '14', '2.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Debate', 'bachelors', '15', '2.3', '2023', '2021', '0' /* NULL if not completed */),
+    ('Mathematics', 'masters', '16', '2.5', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Nursing', 'bachelors', '17', '1.6', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Molecular Microbiology', 'associates', '18', '4.0', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Energy Management', 'bachelors', '19', '2.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Support Services', 'bachelors', '20', '2.9', '2023', '2021', '0' /* NULL if not completed */),
+    ('Management & Leadership', 'bachelors', '21', '2.9', '2023', '2019', '0' /* NULL if not completed */),
+    ('Technical', 'bachelors', '22', '2.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Hospitality', 'bachelors', '23', '2.9', '2020', '2016', '2020' /* NULL if not completed */),
+    ('Political Science', 'masters', '23', '2.9', '2023', '2019', '0' /* NULL if not completed */);
 
 UNLOCK TABLES;
 
@@ -146,43 +165,64 @@ VALUES('1', 'West', '1 Xavier ln'),
 UNLOCK TABLES;
 
 -- ----- STUDENT -------
+-- just did EVEN PERSON_ID for student (odd for professor)
 LOCK TABLES `STUDENT` WRITE;
 INSERT INTO `STUDENT`(PERSON_ID, DEPT_ID)
-VALUES('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '1');
+VALUES('2', '1'),
+    ('4', '2'),
+    ('6', '3'),
+    ('8', '4'),
+    ('10', '5'),
+    ('12', '6'),
+    ('14', '7'),
+    ('16', '8'),
+    ('18', '9'),
+    ('20', '10'),
+    ('22', '11'),
+    ('24', '12'),
+    ('26', '13'),
+    ('28', '14'),
+    ('30', '15'),
+    ('32', '16'),
+    ('34', '17'),
+    ('36', '18'),
+    ('38', '19'),
+    ('40', '20'),
+    ('42', '21'),
+    ('44', '22'),
+    ('46', '23'),
+    ('48', '24');
 
 UNLOCK TABLES;
 
 -- ----- PROFESSOR -------
+-- just did odd PERSON_ID for prefessor (even for student)
 LOCK TABLES `PROFESSOR` WRITE;
 INSERT INTO `PROFESSOR`(PERSON_ID, DEPT_ID, OFFICE_NUM, BUILDING_ID)
-VALUES('3', '1', '1', '1'),
-    ('4', '2', '2', '2'),
+VALUES('1', '1', '1', '1'),
+    ('3', '2', '2', '2'),
     ('5', '3', '3', '3'),
-    ('6', '4', '9', '4'),
-    ('12', '5', '10', '5'),
-    ('13', '6', '11', '6'),
-    ('7', '7', '12', '7'),
-    ('8', '8', '13', '18'),
-    ('9', '9', '14', '19'),
-    ('10', '10', '15', '20'),
-    ('11', '11', '16', '21'),
-    ('2', '12', '4', '22'),
-    ('14', '13', '5', '23'),
-    ('15', '14', '6', '24'),
-    ('16', '15', '7', '8'),
-    ('17', '16', '8', '9'),
-    ('18', '17', '17', '10'),
-    ('19', '18', '18', '11'),
-    ('21', '19', '19', '12'),
-    ('22', '20', '20', '13'),
-    ('23', '21', '24', '14'),
-    ('24', '22', '23', '15'),
-    ('20', '23', '22', '16'),
-    ('1', '24', '21', '17');
+    ('7', '4', '9', '4'),
+    ('9', '5', '10', '5'),
+    ('11', '6', '11', '6'),
+    ('13', '7', '12', '7'),
+    ('15', '8', '13', '18'),
+    ('17', '9', '14', '19'),
+    ('19', '10', '15', '20'),
+    ('21', '11', '16', '21'),
+    ('23', '12', '4', '22'),
+    ('25', '13', '5', '23'),
+    ('27', '14', '6', '24'),
+    ('29', '15', '7', '8'),
+    ('31', '16', '8', '9'),
+    ('33', '17', '17', '10'),
+    ('35', '18', '18', '11'),
+    ('37', '19', '19', '12'),
+    ('39', '20', '20', '13'),
+    ('41', '21', '24', '14'),
+    ('43', '22', '23', '15'),
+    ('45', '23', '22', '16'),
+    ('47', '24', '21', '17');
 
 UNLOCK TABLES;
 
