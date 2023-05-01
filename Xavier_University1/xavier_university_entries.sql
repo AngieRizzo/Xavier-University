@@ -213,7 +213,7 @@ UNLOCK TABLES;
 -- ----- STU DEGREE LIST -------
 LOCK TABLES `STU_DEGREE_LIST` WRITE;
 INSERT INTO `STU_DEGREE_LIST`(STU_ID, DEGREE_ID, CREDITS_EARNED)
-VALUES('1', '1', '108'),
+VALUES('1', '1', '60'),
     ('2', '2', '110'),
     ('3', '3', '80'),
     ('4', '4', '120'),
@@ -331,8 +331,8 @@ DELIMITER ;
 -- ----- UPDATE STUDENT STANDING -------
 -- CALL update_standing(1);
 
--- ----- CALL `update_degree_all_credits`() -------
-CALL update_degree_all_credits();
+-- -- ----- CALL `update_degree_all_credits`() -------
+-- CALL update_degree_all_credits();
 
--- ----- CALL `update_all_gpa`() -------
-CALL update_all_gpa();
+-- -- ----- CALL `update_all_gpa`() -------
+-- CALL update_all_gpa();

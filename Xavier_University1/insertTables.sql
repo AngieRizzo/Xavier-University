@@ -195,11 +195,11 @@ CREATE TABLE `STUDENT` (
 -- If the student has a GPA of 2.0 or higher, set the standing to "Academic Probation" (2)
 -- If the student has a GPA below 2.0, set the standing to "Academic Dismissal" (1)
 DELIMITER $$
-CREATE PROCEDURE `update_standing` (IN `stu_id` INT)
+CREATE PROCEDURE `update_standing` (IN `stud_id` INT)
 BEGIN
     DECLARE `gpa` DECIMAL(4,2);
     DECLARE `standing` VARCHAR(45);
-    SET `gpa` = (SELECT `STU_GPA` FROM `STUDENT` WHERE `STU_ID` = `stu_id`);
+    SET `gpa` = (SELECT `STU_GPA` FROM `STUDENT` WHERE `STU_ID` = `stud_id`);
     IF `gpa` IS NULL THEN
         SET `standing` = "No Standing";
     ELSEIF `gpa` >= 3.5 THEN
@@ -214,6 +214,16 @@ BEGIN
     UPDATE `STUDENT` SET `STU_STANDING` = `standing` WHERE `STU_ID` = `stu_id`;
 END$$
 -- call with `CALL update_standing(n);` where n is the student id
+DELIMITER ;
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `average_gpa`$$
+CREATE PROCEDURE `average_gpa` (OUT `avg_gpa` DECIMAL(4,2))
+BEGIN
+    SELECT AVG(`STU_GPA`) INTO `avg_gpa` FROM `STUDENT`;
+END$$
+-- call with `CALL average_gpa(@avg_gpa);` then `SELECT @avg_gpa;`
 DELIMITER ;
 CREATE TABLE `PROFESSOR` (
   `PROF_ID` int NOT NULL AUTO_INCREMENT,
@@ -253,11 +263,12 @@ CREATE TABLE `STU_DEGREE_LIST` (
 -- If the student already has a year which is higher than the calculated year, then the year is not updated
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS `update_stu_grade_level`$$
 CREATE PROCEDURE `update_stu_grade_level`(IN NEW_ID int)
 BEGIN
     -- make variables for degree_type, year_level_start, credits_earned, and credits_required
     -- get the student's degree type
-    SELECT DEGREE_TYPE, DEGREE_CREDITS INTO @degree_type, @degree_credits FROM DEGREE WHERE DEGREE_ID = (SELECT DEGREE_ID FROM STU_DEGREE_LIST WHERE STU_ID = NEW_ID);
+    SELECT DEGREE_TYPE, DEGREE_CREDITS INTO @degree_type, @degree_credits FROM DEGREE WHERE DEGREE_ID IN (SELECT DEGREE_ID FROM STU_DEGREE_LIST WHERE STU_ID = NEW_ID);
     -- set year_level_start to 1, unless it's a master or doctorate, then set it to 5
     IF @degree_type = 'Master' OR @degree_type = 'Doctorate' THEN
         SET @year_level_start = 5;
@@ -276,23 +287,28 @@ BEGIN
         SET @degree_length = 4;
     END IF;
     -- get the student's credits earned
-    SELECT CREDITS_EARNED INTO @credits_earned FROM STU_DEGREE_LIST WHERE STU_ID = NEW_ID;
+    SELECT MAX(CREDITS_EARNED) INTO @credits_earned FROM STU_DEGREE_LIST WHERE STU_ID = NEW_ID;
     -- credits_earned/degree_credits*degree_length + year_level_start
     SET @year_level = FLOOR(@credits_earned/@degree_credits*@degree_length) + @year_level_start;
+    -- if the student's prior year level is null
+    IF (SELECT STU_GRADE_LEVEL FROM STUDENT WHERE STU_ID = NEW_ID) IS NULL THEN
+        UPDATE STUDENT SET STU_GRADE_LEVEL = @year_level WHERE STU_ID = NEW_ID;
     -- if the student's year level is higher than the calculated year level, then don't update it
-    IF @year_level > (SELECT STU_GRADE_LEVEL FROM STUDENT WHERE STU_ID = NEW_ID) THEN
+    ELSEIF @year_level > (SELECT STU_GRADE_LEVEL FROM STUDENT WHERE STU_ID = NEW_ID) THEN
         UPDATE STUDENT SET STU_GRADE_LEVEL = @year_level WHERE STU_ID = NEW_ID;
     END IF;
 END$$
+DELIMITER ;
 -- create a trigger to call the procedure when `CREDITS_EARNED` is updated in this table
 DELIMITER $$
 CREATE TRIGGER `update_stu_grade_level` AFTER UPDATE ON `STU_DEGREE_LIST`
 FOR EACH ROW
 BEGIN
-    CALL update_stu_grade_level();
+    CALL update_stu_grade_level(NEW.STU_ID);
 END$$
 -- create a trigger to call the procedure when a new row is inserted into this table
 DELIMITER $$
+DROP TRIGGER IF EXISTS `update_stu_grade_level_after_insert`$$
 CREATE TRIGGER `update_stu_grade_level_after_insert` AFTER INSERT ON `STU_DEGREE_LIST`
 FOR EACH ROW
 BEGIN
@@ -338,19 +354,19 @@ CREATE TABLE `ENROLLMENT` (
 -- update the student table with the new GPA
 -- if the student has no grades, set the GPA to 0
 DELIMITER $$
-CREATE PROCEDURE `update_gpa` (IN `stu_id` INT)
+CREATE PROCEDURE `update_gpa` (IN `stud_id` INT)
 BEGIN
     DECLARE `gpa` DECIMAL(4,2);
     DECLARE `grade_sum` DECIMAL(4,2);
     DECLARE `grade_count` INT;
-    SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
-    SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
+    SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stud_id` AND `ENROLL_GRADE` IS NOT NULL);
+    SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stud_id` AND `ENROLL_GRADE` IS NOT NULL);
     IF `grade_count` = 0 THEN
         SET `gpa` = 0;
     ELSE
         SET `gpa` = `grade_sum` / `grade_count`;
     END IF;
-    UPDATE `STUDENT` SET `STU_GPA` = `gpa` WHERE `STU_ID` = `stu_id`;
+    UPDATE `STUDENT` SET `STU_GPA` = `gpa` WHERE `STU_ID` = `stud_id`;
 END$$
 -- run with `CALL update_gpa(n);` where n is the student id
 -- create trigger to run when the ENROLLMENT table is updated and it's the student's id that is updated in the STU_ID field
@@ -362,7 +378,7 @@ CREATE PROCEDURE `update_all_gpa` ()
 BEGIN
     -- loop through each student id, and if the student has no grades, set the GPA to 0
     -- else, call the update_gpa procedure
-    DECLARE `stu_id` INT;
+    DECLARE `stud_id` INT;
     DECLARE `grade_count` INT;
     DECLARE `grade_sum` DECIMAL(4,2);
     DECLARE `gpa` DECIMAL(4,2);
@@ -371,18 +387,18 @@ BEGIN
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET `done` = TRUE;
     OPEN `cur`;
     `loop`: LOOP
-        FETCH `cur` INTO `stu_id`;
+        FETCH `cur` INTO `stud_id`;
         IF `done` THEN
             LEAVE `loop`;
         END IF;
-        SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
+        SET `grade_count` = (SELECT COUNT(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stud_id` AND `ENROLL_GRADE` IS NOT NULL);
         IF `grade_count` = 0 THEN
             SET `gpa` = 0;
         ELSE
-            SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stu_id` AND `ENROLL_GRADE` IS NOT NULL);
+            SET `grade_sum` = (SELECT SUM(`ENROLL_GRADE`) FROM `ENROLLMENT` WHERE `STU_ID` = `stud_id` AND `ENROLL_GRADE` IS NOT NULL);
             SET `gpa` = `grade_sum` / `grade_count`;
         END IF;
-        UPDATE `STUDENT` SET `STU_GPA` = `gpa` WHERE `STU_ID` = `stu_id`;
+        UPDATE `STUDENT` SET `STU_GPA` = `gpa` WHERE `STU_ID` = `stud_id`;
     END LOOP `loop`;
     CLOSE `cur`;
 END$$
@@ -465,7 +481,7 @@ LOCK TABLES `DEPARTMENT` WRITE;
 INSERT INTO `DEPARTMENT`(DEPT_NAME)
 VALUES('Architecture'),
 	('Astronomy and Astrophysics'),
-    ('Neuroscience, Developmental and Regenerative Biology'),
+    ('Neuroscience'),
     ('Integrative Biology'),
     ('Earth and Planetary Sciences'),
     ('Business'),
@@ -473,7 +489,7 @@ VALUES('Architecture'),
     ('Engineering'),
     ('Fine Arts'),
     ('Foreign Language'),
-    ('Histoy'),
+    ('History'),
     ('Humanities & Sciences'),
     ('Information Systems'),
     ('Law'),
@@ -557,6 +573,7 @@ VALUES('1', 'West', '1 Xavier ln'),
 UNLOCK TABLES;
 
 -- ----- STUDENT -------
+-- just did EVEN PERSON_ID for student (odd for professor)
 LOCK TABLES `STUDENT` WRITE;
 INSERT INTO `STUDENT`(PERSON_ID)
 VALUES('1'), ('2'), ('3'), ('4'), ('5'),
@@ -569,6 +586,7 @@ VALUES('1'), ('2'), ('3'), ('4'), ('5'),
 UNLOCK TABLES;
 
 -- ----- PROFESSOR -------
+-- just did odd PERSON_ID for prefessor (even for student)
 LOCK TABLES `PROFESSOR` WRITE;
 INSERT INTO `PROFESSOR`(PERSON_ID, DEPT_ID, OFFICE_NUM, BUILDING_ID)
 VALUES('26', '1', '1', '1'),
@@ -601,7 +619,7 @@ UNLOCK TABLES;
 -- ----- STU DEGREE LIST -------
 LOCK TABLES `STU_DEGREE_LIST` WRITE;
 INSERT INTO `STU_DEGREE_LIST`(STU_ID, DEGREE_ID, CREDITS_EARNED)
-VALUES('1', '1', '108'),
+VALUES('1', '1', '60'),
     ('2', '2', '110'),
     ('3', '3', '80'),
     ('4', '4', '120'),
@@ -719,8 +737,8 @@ DELIMITER ;
 -- ----- UPDATE STUDENT STANDING -------
 -- CALL update_standing(1);
 
--- ----- CALL `update_degree_all_credits`() -------
-CALL update_degree_all_credits();
+-- -- ----- CALL `update_degree_all_credits`() -------
+-- CALL update_degree_all_credits();
 
--- ----- CALL `update_all_gpa`() -------
-CALL update_all_gpa();
+-- -- ----- CALL `update_all_gpa`() -------
+-- CALL update_all_gpa();

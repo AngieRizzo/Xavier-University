@@ -23,11 +23,11 @@ CREATE TABLE `STUDENT` (
 -- If the student has a GPA of 2.0 or higher, set the standing to "Academic Probation" (2)
 -- If the student has a GPA below 2.0, set the standing to "Academic Dismissal" (1)
 DELIMITER $$
-CREATE PROCEDURE `update_standing` (IN `stu_id` INT)
+CREATE PROCEDURE `update_standing` (IN `stud_id` INT)
 BEGIN
     DECLARE `gpa` DECIMAL(4,2);
     DECLARE `standing` VARCHAR(45);
-    SET `gpa` = (SELECT `STU_GPA` FROM `STUDENT` WHERE `STU_ID` = `stu_id`);
+    SET `gpa` = (SELECT `STU_GPA` FROM `STUDENT` WHERE `STU_ID` = `stud_id`);
     IF `gpa` IS NULL THEN
         SET `standing` = "No Standing";
     ELSEIF `gpa` >= 3.5 THEN
@@ -42,4 +42,14 @@ BEGIN
     UPDATE `STUDENT` SET `STU_STANDING` = `standing` WHERE `STU_ID` = `stu_id`;
 END$$
 -- call with `CALL update_standing(n);` where n is the student id
+DELIMITER ;
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `average_gpa`$$
+CREATE PROCEDURE `average_gpa` (OUT `avg_gpa` DECIMAL(4,2))
+BEGIN
+    SELECT AVG(`STU_GPA`) INTO `avg_gpa` FROM `STUDENT`;
+END$$
+-- call with `CALL average_gpa(@avg_gpa);` then `SELECT @avg_gpa;`
 DELIMITER ;
