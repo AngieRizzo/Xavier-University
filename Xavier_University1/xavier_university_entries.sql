@@ -332,4 +332,4 @@ DELIMITER ;
 CALL update_all_gpa();
 CALL update_standing(1);
 CALL update_degree_all_credits();
-CALL update_all_standings();
+CALL update_all_stu_grade_levels();

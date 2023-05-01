@@ -77,3 +77,22 @@ BEGIN
     CALL update_stu_grade_level(NEW.STU_ID);
 END$$
 DELIMITER ;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `update_all_stu_grade_levels`$$
+CREATE PROCEDURE `update_all_stu_grade_levels`()
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE id INT;
+    DECLARE cur CURSOR FOR SELECT STU_ID FROM STUDENT;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    OPEN cur;
+    read_loop: LOOP
+        FETCH cur INTO id;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        CALL update_stu_grade_level(id);
+    END LOOP;
+    CLOSE cur;
+END$$
+DELIMITER ;
