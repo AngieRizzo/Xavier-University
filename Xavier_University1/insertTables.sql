@@ -216,6 +216,27 @@ END$$
 -- call with `CALL update_standing(n);` where n is the student id
 DELIMITER ;
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `update_all_standings`$$
+CREATE PROCEDURE `update_all_standings` ()
+BEGIN
+    DECLARE `stud_id` INT;
+    DECLARE `done` INT DEFAULT FALSE;
+    DECLARE `cur` CURSOR FOR SELECT `STU_ID` FROM `STUDENT`;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET `done` = TRUE;
+    OPEN `cur`;
+    `loop`: LOOP
+        FETCH `cur` INTO `stud_id`;
+        IF `done` THEN
+            LEAVE `loop`;
+        END IF;
+        CALL `update_standing`(`stud_id`);
+    END LOOP `loop`;
+    CLOSE `cur`;
+END$$
+DELIMITER ;
+-- CALL `update_all_standings`();
+
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `average_gpa`$$
@@ -734,11 +755,8 @@ END$$
 DELIMITER ;
 
 
--- ----- UPDATE STUDENT STANDING -------
--- CALL update_standing(1);
-
--- -- ----- CALL `update_degree_all_credits`() -------
--- CALL update_degree_all_credits();
-
--- -- ----- CALL `update_all_gpa`() -------
--- CALL update_all_gpa();
+-- ----- UPDATE TABLES AS NEEDED -------
+CALL update_all_gpa();
+CALL update_standing(1);
+CALL update_degree_all_credits();
+CALL update_all_standings();

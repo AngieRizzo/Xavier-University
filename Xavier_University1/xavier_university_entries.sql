@@ -328,11 +328,8 @@ END$$
 DELIMITER ;
 
 
--- ----- UPDATE STUDENT STANDING -------
--- CALL update_standing(1);
-
--- -- ----- CALL `update_degree_all_credits`() -------
--- CALL update_degree_all_credits();
-
--- -- ----- CALL `update_all_gpa`() -------
--- CALL update_all_gpa();
+-- ----- UPDATE TABLES AS NEEDED -------
+CALL update_all_gpa();
+CALL update_standing(1);
+CALL update_degree_all_credits();
+CALL update_all_standings();
